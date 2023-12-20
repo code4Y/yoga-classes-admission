@@ -1,25 +1,98 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+nav {
+	position: fixed;
+	top: 10px;
+	width: 80%;
+	height: 10vh;
+	z-index: 2;
+}
+
+.navbar {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 10vh;
+	top: 5px;
+	left: 5px;
+	padding: 0 20px;
+
+	/* For glass morphism effect */
+	background: rgba(137, 174, 255, 0);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(4.1px);
+	-webkit-backdrop-filter: blur(4.1px);
+	border: 1px solid rgba(137, 174, 255, 0.3);
+}
+
+.login-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 10px 16px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
 body {
 	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
 	margin: 0;
 	padding: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	background-color: #f4f4f4;
+	background-color: #f4f4f4
+}
+
+.bg-img {
+	position: relative;
+	/* Image Credits https://unsplash.com/@jess33mx */
+	background-image: url("https://images.unsplash.com/photo-1616699002805-0741e1e4a9c5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.bg-img::before {
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: -1;
 }
 
 .container {
+	margin-top: 10vh;
 	background-color: #fff;
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.container h1 {
+	margin-bottom: 10px;
+}
+
 label {
 	display: block;
-	margin-bottom: 5px;
 	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 14px;
 }
 
 input[type="text"],
@@ -27,14 +100,16 @@ input[type="number"],
 input[type="email"],
 input[type="password"],
 select {
-	width: calc(100% - 12px);
+	width: 100%;
 	padding: 8px;
-	margin-bottom: 10px;
+	margin-bottom: 6px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
 }
 
 button {
+	font-size: 16px;
+	font-weight: bold;
 	padding: 10px 20px;
 	background-color: #007bff;
 	color: #fff;
@@ -46,6 +121,10 @@ button {
 
 button:hover {
 	background-color: #0056b3;
+}
+ 
+#register {
+	width: 100%;
 }
 
 .popup {

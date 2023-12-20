@@ -5,9 +5,16 @@
   <title>User Registration</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg-img">
+  <nav>
+    <div class="navbar">
+      <h2>Yoga Classes</h2>
+      <h1>🧘‍♀️🧘‍♂️</h1>
+      <button class="login-btn">Login</button>
+    </div>
+  </nav>
   <div class="container">
-    <h1>User Registration</h1>
+    <h1>New User Registration</h1>
     <form id="registrationForm">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required><br><br>
@@ -29,14 +36,14 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required><br><br>
       
-      <button type="button" onclick="handleRegistration()">Register</button>
+      <button id="register" type="button" onclick="handleRegistration()">Register</button>
     </form>
 
     <div id="paymentPopup" class="popup">
       <h2>Pay Fees</h2>
       <p>Please pay Rs. 500 as fees for this month.</p>
-      <button id="payNowBtn" onclick="payNow()">Pay Now</button>
-      <button id="payLaterBtn" onclick="payLater()">Pay Later</button>
+      <button id="payNowBtn">Pay Now</button>
+      <button id="payLaterBtn">Pay Later</button>
     </div>
   </div>
 
