@@ -20,6 +20,14 @@ const pool = new Pool({
 
 app.use(bodyParser.json());
 
+// Testing Postgresql server connection
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+      console.error('Database connection error:', err);
+  } else {
+      console.log('Connected to database successfully:', res.rows);
+  }
+});
 
 // API endpoints
 
