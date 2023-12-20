@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Registration</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -20,7 +21,7 @@
       <input type="text" id="name" name="name" required><br><br>
       
       <label for="age">Age:</label>
-      <input type="number" id="age" name="age" required><br><br>
+      <input type="number" id="age" name="age" min="18" max="65" required><br><br>
       
       <label for="batch">Batch:</label>
       <select id="batch" name="batch">
@@ -36,7 +37,7 @@
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required><br><br>
       
-      <button id="register" type="button" onclick="handleRegistration()">Register</button>
+      <button id="register" type="button">Register</button>
     </form>
 
     <div id="paymentPopup" class="popup">

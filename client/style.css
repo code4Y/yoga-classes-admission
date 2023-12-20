@@ -90,9 +90,9 @@ body {
 
 label {
 	display: block;
-	font-weight: bold;
 	text-transform: uppercase;
 	font-size: 14px;
+	color: #ababab;
 }
 
 input[type="text"],
@@ -105,6 +105,7 @@ select {
 	margin-bottom: 6px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
+	background-color: #f3f3f3c3;
 }
 
 button {
