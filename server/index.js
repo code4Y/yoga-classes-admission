@@ -23,6 +23,23 @@ app.use(bodyParser.json());
 
 // API endpoints
 
+// Test for server on Vercel
+app.get("/", async (req, res) => {
+  res.send("API Server is running");
+})
+
+app.get("/api/show", async (req, res) => {
+  try {
+    const result = await pool.query('SELECT UserID, Name, Age, Email FROM users');
+    const userData = result.rows;
+    res.json(userData);
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
 // User registration logic
 app.post('/api/register', async (req, res) => {
   const { name, age, email, password, batchid } = req.body;
