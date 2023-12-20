@@ -47,4 +47,34 @@ CREATE TABLE payments (
     Amount INT NOT NULL,
     PaymentDate DATE NOT NULL
 );
+
 ```   
+
+## Entity Relationship diagram:   
+
+#### ER Diagram for Yoga Classes Registration  
+
+![ER Diagram](https://github.com/code4Y/yoga-classes-admission/blob/main/ER-Diagram.png)   
+
+   
+#### Description   
+
+```
+Entities:
+1. Users
+2. Batches
+3. Enrollments
+4. Payments
+
+Attributes:
+1. Users: UserID (Primary Key), Name, Age, Email (Unique), Password
+2. Batches: BatchID (Primary Key), BatchTime
+3. Enrollments: EnrollmentID (Primary Key), UserID (Foreign Key referencing Users.UserID), BatchID (Foreign Key referencing Batches.BatchID), EnrollmentMonth
+4. Payments: PaymentID (Primary Key), UserID (Foreign Key referencing Users.UserID), Amount, PaymentDate
+
+Relationships:
+1. Users and Enrollments: One-to-One (One user can have only one enrollment)
+2. Users and Payments: One-to-Many (One user can make multiple payments)
+3. Batches and Enrollments: One-to-Many (One batch can have multiple enrollments)
+
+```
