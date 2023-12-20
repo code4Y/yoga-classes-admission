@@ -8,10 +8,16 @@ require('dotenv').config();
 
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(cors(
+  {
+      origin: ["https://yoga-classes-admission.vercel.app/"],
+      methods: ["POST", "GET", "PUT"],
+      credentials: true
+  }
+));
 
 // PostgreSQL configuration
 const pool = new Pool({
@@ -35,17 +41,6 @@ pool.query('SELECT NOW()', (err, res) => {
 app.get("/", async (req, res) => {
   res.send("API Server is running");
 })
-
-app.get("/api/show", async (req, res) => {
-  try {
-    const result = await pool.query('SELECT UserID, Name, Age, Email FROM users');
-    const userData = result.rows;
-    res.json(userData);
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
 
 
 // User registration logic

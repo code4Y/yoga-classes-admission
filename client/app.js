@@ -44,7 +44,7 @@ const handleRegistration = async () => {
   const formData = { name, age, batchid, email, password };
 
   try {
-    const response = await fetch('http://localhost:3000/api/register', {
+    const response = await fetch('https://yoga-classes-admission-bend-code4ys-projects.vercel.app/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ const handlePayment = async (payNow) => {
 
   try {
     if (payNow) {
-      const response = await fetch('http://localhost:3000/api/pay-fee', {
+      const response = await fetch('https://yoga-classes-admission-bend-code4ys-projects.vercel.app/api/pay-fee', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
