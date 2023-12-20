@@ -51,6 +51,12 @@ CREATE TABLE payments (
 ```   
 
 ## Entity Relationship diagram:   
+
+#### ER Diagram for Yoga Classes Registration  
+
+![ER Diagram](https://github.com/code4Y/yoga-classes-admission/blob/main/ER-Diagram.png)   
+
+   
 #### Description   
 
 ```
