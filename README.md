@@ -78,3 +78,20 @@ Relationships:
 3. Batches and Enrollments: One-to-Many (One batch can have multiple enrollments)
 
 ```
+
+
+## Assumptions Made in the Project 🤔    
+
+    
+#### Database Structure and User Attributes    
+- The ER diagram indicated the use of multiple tables, prompting the need for additional fields to establish normalization. Attributes like `email` and `password` were assumed for authentication of existing users. For security purposes, the `password` attribute was hashed using bcrypt with a salt round of 10.
+    
+#### Fee Transactions and Payment Records    
+- All transactions, assumed to be Rs. 500 each, were stored in the `Payment` table for every month a user makes a payment. The fee's paid/unpaid status was inferred based on the presence of a current month's entry in the `Payments` table.
+
+#### User Enrollment and Batch Changes    
+- The `Transactions` table maintains a single record for each enrolled user, recording their enrollment date and `batchid`. It's assumed that users can only change their batch timing on the 1st day of the month, updating the `batchid` in this table accordingly.
+- To better manage and standardize batch timings, an `existing` `Batches` table was used to map specific batch timings to respective `batchid`s. This approach ensures scalability and adaptability, especially when batch timings are subject to changes.
+
+#### Frontend Handling of Batch Timings    
+- In the frontend, batch timings were directly mapped to batch indices for efficiency. Utilizing an existing `Batches` table for better scalability and flexibility in handling batch timings is crucial for accommodating changes and updates.    
