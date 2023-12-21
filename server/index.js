@@ -8,9 +8,9 @@ require('dotenv').config();
 
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
-// Enable CORS for all routes
+// Enable CORS to allow routes
 app.use(cors(
   {
       origin: ["https://yoga-classes-admission.vercel.app/"],
@@ -189,6 +189,6 @@ app.put('/api/change-batch/:userID', async (req, res) => {
 });
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Server is running on port ${port}`);
 });
