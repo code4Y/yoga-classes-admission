@@ -61,7 +61,7 @@ const handleRegistration = async () => {
   const formData = { name, age, batchid, email, password };
 
   try {
-    const response = await fetch('https://yoga-classes-admission-bend-code4ys-projects.vercel.app/api/register', {
+    const response = await fetch('https://average-lamb-wetsuit.cyclic.app/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,6 +70,9 @@ const handleRegistration = async () => {
     });
 
     if (response.ok) {
+      const { userID } = await response.json();
+
+      handlePayment(userID);
       showPaymentPopup();
     } else {
       console.error('Registration failed');
@@ -80,37 +83,45 @@ const handleRegistration = async () => {
 };
 
 // Function to handle payment
-const handlePayment = async (payNow) => {
-  const userID = ''; // Retrieve user ID from somewhere
-
+const handlePayment = async (userID) => {
   try {
-    if (payNow) {
-      const response = await fetch('https://yoga-classes-admission-bend-code4ys-projects.vercel.app/api/pay-fee', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userID }),
-      });
+    const payNowBtn = document.getElementById('payNowBtn');
+    const payLaterBtn = document.getElementById('payLaterBtn');
 
-      if (response.ok) {
-        hidePaymentPopup();
-      } else {
-        console.error('Payment failed');
+    payNowBtn.addEventListener('click', async () => {
+      try {
+        const response = await fetch('https://average-lamb-wetsuit.cyclic.app/api/pay-fee', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ userID }),
+        });
+
+        if (response.ok) {
+          hidePaymentPopup();
+        } else {
+          console.error('Payment failed');
+        }
+      } catch (error) {
+        console.error('Payment error:', error);
       }
-    } else {
+    });
+
+    payLaterBtn.addEventListener('click', () => {
       hidePaymentPopup();
-    }
+    });
+
   } catch (error) {
-    console.error('Payment error:', error);
+    console.error('Error in handlePayment:', error);
   }
 };
 
-// Event listeners to form and buttons
-document.getElementById('registrationForm').addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent default form submission
-  handleRegistration();
-});
+// Event listener for Registration form
+// document.getElementById('registrationForm').addEventListener('submit', (event) => {
+//   event.preventDefault(); // Prevent default form submission
+//   handleRegistration();
+// });
 
 document.getElementById('register').addEventListener('click', handleRegistration);
 document.getElementById('payNowBtn').addEventListener('click', () => handlePayment(true));

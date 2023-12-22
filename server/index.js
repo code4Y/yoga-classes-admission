@@ -72,7 +72,7 @@ app.post('/api/register', async (req, res) => {
       [userID, batchid]
     );
 
-    res.status(201).send('User registered successfully');
+    res.status(201).json({ userID });
   } catch (error) {
     console.error('Registration error:', error);
     res.status(500).json({ message: 'Server error' });
