@@ -128,13 +128,15 @@ button:hover {
 	width: 100%;
 }
 
+/* Login */
+
 .popup {
 	display: none;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	padding: 20px;
+	padding: 25px;
 	background-color: #fff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 	border-radius: 8px;
@@ -142,11 +144,26 @@ button:hover {
 }
 
 .popup h2 {
-	margin-top: 0;
+  margin-bottom: 15px;
 }
 
-.popup button {
-	margin-top: 10px;
+.popup span,
+.popup p {
+  color: #5f5f5f;
+}
+
+.popup .pay-btns {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.pay-btns #payLaterBtn {
+  background-color: red;
+}
+
+.pay-btns #payLaterBtn:hover {
+  background-color: rgb(192, 0, 38);
 }
 
 .log-cnt {

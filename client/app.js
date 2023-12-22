@@ -71,8 +71,7 @@ const handleRegistration = async () => {
 
     if (response.ok) {
       const { userID } = await response.json();
-
-      handlePayment(userID);
+      handlePayment(userID, name);
       showPaymentPopup();
     } else {
       console.error('Registration failed');
@@ -83,7 +82,9 @@ const handleRegistration = async () => {
 };
 
 // Function to handle payment
-const handlePayment = async (userID) => {
+const handlePayment = async (userID, name) => {
+  document.getElementById("paymentUserName").textContent = name;
+
   try {
     const payNowBtn = document.getElementById('payNowBtn');
     const payLaterBtn = document.getElementById('payLaterBtn');
@@ -117,12 +118,4 @@ const handlePayment = async (userID) => {
   }
 };
 
-// Event listener for Registration form
-// document.getElementById('registrationForm').addEventListener('submit', (event) => {
-//   event.preventDefault(); // Prevent default form submission
-//   handleRegistration();
-// });
-
 document.getElementById('register').addEventListener('click', handleRegistration);
-document.getElementById('payNowBtn').addEventListener('click', () => handlePayment(true));
-document.getElementById('payLaterBtn').addEventListener('click', () => handlePayment(false));

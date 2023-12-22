@@ -11,29 +11,15 @@ const app = express();
 const port = 3000;
 
 // Enable CORS to allow routes
-app.use(cors(
-  {
-      origin: ["https://yoga-classes-admission.vercel.app/"],
-      methods: ["POST", "GET", "PUT"],
-      credentials: true
-  }
-));
-
-// PostgreSQL configuration
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-});
+app.use(cors({
+  origin: "https://yoga-classes-admission.vercel.app",
+  methods: ["POST", "GET", "PUT"],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+}));
 
 app.use(bodyParser.json());
 
-// Testing Postgresql server connection
-pool.query('SELECT NOW()', (err, res) => {
-  if (err) {
-      console.error('Database connection error:', err);
-  } else {
-      console.log('Connected to database successfully:', res.rows);
-  }
-});
 
 // API endpoints
 

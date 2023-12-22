@@ -14,6 +14,8 @@
       <button class="login-btn">Login</button>
     </div>
   </nav>
+
+  <!-- Register -->
   <div class="container reg-cnt">
     <h1>New User Registration</h1>
     <form id="registrationForm">
@@ -40,14 +42,19 @@
       <button id="register" type="button">Register</button>
     </form>
 
+    <!-- Fee Payment -->
     <div id="paymentPopup" class="popup">
-      <h2>Pay Fees</h2>
+      <h2>Fee Payment</h2>
+      <span id="paymentUserName"></span>
       <p>Please pay Rs. 500 as fees for this month.</p>
-      <button id="payNowBtn">Pay Now</button>
-      <button id="payLaterBtn">Pay Later</button>
+      <div class="pay-btns">
+        <button id="payNowBtn">Pay Now</button>
+        <button id="payLaterBtn">Pay Later</button>
+      </div>
     </div>
   </div>
 
+  <!-- Login -->
   <div class="container log-cnt hidden">
     <h1>User Login</h1>
 
