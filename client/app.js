@@ -1,3 +1,20 @@
+const loginBtn = document.querySelector(".login-btn");
+const loginForm = document.querySelector(".log-cnt");
+const registrationForm = document.querySelector(".reg-cnt");
+
+// Switch between Login and Registration Form 
+loginBtn.addEventListener("click", () => {
+  loginForm.classList.toggle("hidden");
+  registrationForm.classList.toggle("hidden");
+
+  if(registrationForm.classList.contains("hidden")) {
+    loginBtn.textContent = "Sign Up";
+  }
+  else {
+    loginBtn.textContent = "Login";
+  }
+});
+
 // Function to show the payment popup
 const showPaymentPopup = () => {
   document.getElementById('paymentPopup').style.display = 'block';
@@ -89,7 +106,7 @@ const handlePayment = async (payNow) => {
   }
 };
 
-// Add event listeners to form and buttons
+// Event listeners to form and buttons
 document.getElementById('registrationForm').addEventListener('submit', (event) => {
   event.preventDefault(); // Prevent default form submission
   handleRegistration();

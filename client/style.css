@@ -33,7 +33,6 @@ nav {
 
 .login-btn {
 	position: absolute;
-	top: 10px;
 	right: 10px;
 	padding: 10px 16px;
 	background-color: #007bff;
@@ -112,6 +111,7 @@ button {
 	font-size: 16px;
 	font-weight: bold;
 	padding: 10px 20px;
+	margin-top: 10px;
 	background-color: #007bff;
 	color: #fff;
 	border: none;
@@ -147,4 +147,22 @@ button:hover {
 
 .popup button {
 	margin-top: 10px;
+}
+
+.log-cnt {
+	position: absolute;
+	visibility: visible;
+}
+
+.log-cnt #loginForm {
+	min-width: 300px;
+}
+
+.log-cnt #login {
+	width: 100%;
+}
+
+/* JavaScript */
+.hidden {
+	visibility: hidden;
 }
