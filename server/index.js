@@ -11,12 +11,7 @@ const app = express();
 const port = 3000;
 
 // Enable CORS to allow routes
-app.use(cors({
-  origin: "https://yoga-classes-admission.vercel.app",
-  methods: ["POST", "GET", "PUT"],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'], 
-}));
+app.use(cors());
 
 app.use(bodyParser.json());
 
