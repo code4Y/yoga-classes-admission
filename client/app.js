@@ -2,6 +2,9 @@ const loginBtn = document.querySelector(".login-btn");
 const loginForm = document.querySelector(".log-cnt");
 const registrationForm = document.querySelector(".reg-cnt");
 
+// URL to host server
+const hostServerUrl = 'https://average-lamb-wetsuit.cyclic.app';
+
 // Switch between Login and Registration Form 
 loginBtn.addEventListener("click", () => {
   loginForm.classList.toggle("hidden");
@@ -61,7 +64,7 @@ const handleRegistration = async () => {
   const formData = { name, age, batchid, email, password };
 
   try {
-    const response = await fetch('https://average-lamb-wetsuit.cyclic.app/api/register', {
+    const response = await fetch(`${hostServerUrl}/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +94,7 @@ const handlePayment = async (userID, name) => {
 
     payNowBtn.addEventListener('click', async () => {
       try {
-        const response = await fetch('https://average-lamb-wetsuit.cyclic.app/api/pay-fee', {
+        const response = await fetch(`${hostServerUrl}/api/pay-fee`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

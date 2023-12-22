@@ -6,12 +6,21 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 
-
 const app = express();
 const port = 3000;
 
+// PostgreSQL configuration
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
 // Enable CORS to allow routes
-app.use(cors());
+app.use(cors({
+  origin: "https://yoga-classes-admission.vercel.app",
+  methods: ["POST", "GET", "PUT"],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+}));
 
 app.use(bodyParser.json());
 
