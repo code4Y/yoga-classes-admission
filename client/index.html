@@ -42,15 +42,16 @@
       <button id="register" type="button">Register</button>
     </form>
 
-    <!-- Fee Payment -->
-    <div id="paymentPopup" class="popup">
-      <h2>Fee Payment</h2>
-      <span id="paymentUserName"></span>
-      <p>Please pay Rs. 500 as fees for this month.</p>
-      <div class="pay-btns">
-        <button id="payNowBtn">Pay Now</button>
-        <button id="payLaterBtn">Pay Later</button>
-      </div>
+  </div>
+
+  <!-- Fee Payment -->
+  <div id="paymentPopup" class="popup">
+    <h2>Fee Payment</h2>
+    <span id="paymentUserName"></span>
+    <p>Please pay Rs. 500 as fees for this month.</p>
+    <div class="pay-btns">
+      <button id="payNowBtn">Pay Now</button>
+      <button id="payLaterBtn">Pay Later</button>
     </div>
   </div>
 
@@ -67,6 +68,35 @@
       
       <button id="login" type="button">Login</button>
     </form>
+  </div>
+
+  <!-- Profile -->
+  <div class="container profile">
+    <h1>User Profile</h1>
+    <div>
+      <p><strong>Name:</strong> <span id="profile-name"></span></p>
+      <p><strong>Age:</strong> <span id="profile-age"></span></p>
+      <p><strong>Email:</strong> <span id="profile-email"></span></p>
+      <div>
+        <p><strong>Batch:</strong> 
+          <select id="profile-batch" name="profile-batch">
+            <option value="1">6-7AM</option>
+            <option value="2">7-8AM</option>
+            <option value="3">8-9AM</option>
+            <option value="4">5-6PM</option>
+          </select>
+          <button id="change-batch">Apply</button></br>
+          <span id="info">Select new batch from drop down</span></br>
+          <span id="warning">Only changes on 1st day of the month</span>
+        </p>
+      </div>
+      <p><strong>Fee Status:</strong> <span id="profile-fee-status"></span>
+        <button id="pay-fees">Pay Fees</button>
+      </p>
+    </div>
+    <div class="logout-btn">
+      <button id="logout">Logout</button>
+    </div>
   </div>
 
   <script src="app.js"></script>

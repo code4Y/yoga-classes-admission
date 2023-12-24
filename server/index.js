@@ -17,7 +17,7 @@ const pool = new Pool({
 // Enable CORS to allow routes
 app.use(cors({
   origin: "https://yoga-classes-admission.vercel.app",
-  methods: ["POST", "GET", "PUT"],
+  methods: ["POST", "PUT"],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'], 
 }));
@@ -26,12 +26,6 @@ app.use(bodyParser.json());
 
 
 // API endpoints
-
-// Test for server on Vercel
-app.get("/", async (req, res) => {
-  res.send("API Server is running");
-})
-
 
 // User registration logic
 app.post('/api/register', async (req, res) => {
@@ -96,7 +90,8 @@ app.post('/api/login', async (req, res) => {
       name: user.rows[0].name,
       age: user.rows[0].age,
       email: user.rows[0].email,
-      // Include other necessary user details
+      paymentStatus: await fetchPaymentStatus(user.rows[0].userid), // Fetch payment status from payments table
+      batchID: await fetchBatchID(user.rows[0].userid), // Fetch batchID from transactions table
     };
 
     res.status(200).json(userDetails);
@@ -106,7 +101,31 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-  
+
+// Function to fetch payment status from payments table
+const fetchPaymentStatus = async (userID) => {
+  try {
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1; // Get the current month (1-indexed)
+
+    // Check if a payment record exists for the current month and user
+    const paymentExists = await pool.query(
+      'SELECT * FROM payments WHERE userid = $1 AND EXTRACT(MONTH FROM paymentdate) = $2',
+      [userID, currentMonth]
+    );
+
+    if (paymentExists.rows.length > 0) {
+      return 'PAID';
+    } else {
+      return 'NOT PAID';
+    }
+  } catch (error) {
+    console.error('Error fetching payment status:', error);
+    return 'Not available';
+  }
+};
+
+
 // Fee payment logic
 app.post('/api/pay-fee', async (req, res) => {
   const { userID } = req.body;
@@ -145,6 +164,24 @@ app.post('/api/pay-fee', async (req, res) => {
 });
 
 
+// Function to fetch batchID from enrollments table
+const fetchBatchID = async (userID) => {
+  try {
+    const batchQuery = 'SELECT batchid FROM enrollments WHERE userid = $1';
+    const result = await pool.query(batchQuery, [userID]);
+
+    if (result.rows.length > 0) {
+      return result.rows[0].batchid;
+    } else {
+      return 'Not available';
+    }
+  } catch (error) {
+    console.error('Error fetching batchID:', error);
+    return 'Not available';
+  }
+};
+
+
 // Batch change logic
 app.put('/api/change-batch/:userID', async (req, res) => {
   const { userID } = req.params;
@@ -164,12 +201,11 @@ app.put('/api/change-batch/:userID', async (req, res) => {
       return res.status(400).json({ message: 'Batch change is allowed only on the 1st day of the month' });
     }
 
-    // Update user's current batch for the current month
-    const currentMonth = today.getMonth() + 1; // Adding 1 as getMonth() returns 0-indexed month
+    // Update user's batchID 
     await pool.query(
-      'UPDATE enrollments SET batchid = $1 WHERE userid = $2 AND EXTRACT(MONTH FROM enrollmentmonth) = $3',
-      [newBatchID, userID, currentMonth]
-    );
+      'UPDATE enrollments SET batchid = $1 WHERE userid = $2',
+      [newBatchID, userID]
+    );    
 
     res.status(200).json({ message: 'Batch change successful from the current month' });
   } catch (error) {

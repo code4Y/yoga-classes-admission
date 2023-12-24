@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+  /* border: 1px solid red; */
 }
 
 nav {
@@ -33,6 +34,7 @@ nav {
 
 .login-btn {
 	position: absolute;
+	top: 0;
 	right: 10px;
 	padding: 10px 16px;
 	background-color: #007bff;
@@ -159,16 +161,16 @@ button:hover {
 }
 
 .pay-btns #payLaterBtn {
-  background-color: red;
+  background-color: #ff6347;
 }
 
 .pay-btns #payLaterBtn:hover {
-  background-color: rgb(192, 0, 38);
+  background-color: #d63d21;
 }
 
 .log-cnt {
 	position: absolute;
-	visibility: visible;
+	display: block;
 }
 
 .log-cnt #loginForm {
@@ -181,5 +183,64 @@ button:hover {
 
 /* JavaScript */
 .hidden {
-	visibility: hidden;
+	display: none;
+}
+
+/* Profile */
+
+.profile {
+  display: none;
+}
+
+.profile.visible {
+  display: block;
+}
+
+.profile h1 {
+  text-align: center;
+}
+
+.profile p {
+  margin: 25px;
+  font-size: 16px;
+  width: 300px;
+}
+
+.profile span {
+  background-color: #f3f3f3c3;
+}
+
+.profile .logout-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.profile #logout {
+  margin: 0 25px 5px 25px;
+  padding: 10px 20px;
+  background-color: #ff6347;
+}
+
+.profile #logout:hover {
+  background-color: #d63d21;
+}
+
+.profile select {
+  margin: 0 6px;
+  width: 45%;
+  outline: none;
+}
+
+.profile #info {
+  color: blue;
+  font-size: 12px;
+}
+
+.profile #warning {
+  color: #ff6347;
+  font-size: 12px;
+}
+
+.profile #change-batch {
+	line-height: 14px;
 }
